@@ -1,0 +1,16 @@
+# OS artifacts
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+
+# Local experiment logs and personal notes must not be published
+*.local.*
+private/
