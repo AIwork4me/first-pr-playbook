@@ -77,9 +77,27 @@ Read both language editions against the six beginner questions (what first, unde
 - Learner docs: 6 EN + 6 ZH. Maintainer docs: 4 (audit, this report, publication plan, publish runbook).
 - Governance: README.md + README.zh-CN.md, AGENTS.md, CONTRIBUTING ×2, CODE_OF_CONDUCT ×2, SECURITY ×2, CHANGELOG, ROADMAP, LICENSE, LICENSE-CONTENT.md, .gitignore, PR template, issue template, docs-quality.yml, validate-docs.mjs.
 
-## 5. Publication record
+## 5. Publication record (executed 2026-10-27)
 
-Filled in during/after the publish step; see section 7.
+| Item | Result |
+|---|---|
+| Target existence check before creation | `AIwork4me/first-pr-playbook` did not exist (`gh repo view` → not found) — nothing overwritten |
+| Authenticated account | `gh api user` → `AIwork4me` |
+| Local git | Fresh `git init -b main` (no prior history); 100 files staged, audited clean of secrets/temp files |
+| Launch commit | `de99805a4af1e5b91eb40dc5284b6312ecea65e6` — "docs: launch bilingual first PR playbook" (100 files, +3,966) |
+| Repo creation | `gh repo create AIwork4me/first-pr-playbook --public …` — created |
+| Push note | First push attempt failed (git did not use the Windows system proxy at `127.0.0.1:7897`); retried with `HTTPS_PROXY` set inline → `main -> main` pushed successfully |
+| Remote SHA vs local SHA | Identical: `de99805a4af1e5b91eb40dc5284b6312ecea65e6` (verified via `gh api …/commits/main`) |
+| Visibility / default branch | Public (`private: false`), default branch `main` |
+| Remote README | `README.md` is the English landing page with language navigation; `README.zh-CN.md` serves the Chinese landing page |
+| Remote lessons | `lessons/en/`: 10 lessons + index; `lessons/zh-CN/`: 10 lessons + index (contents API) |
+| Remote licensing | `LICENSE` + `LICENSE-CONTENT.md` present |
+| Remote workflow | `.github/workflows/docs-quality.yml` present |
+| Topics | Applied (10): ai-coding, beginner-friendly, code-review, documentation, first-pull-request, github, good-first-issue, open-source, rocm, software-engineering |
+| GitHub Actions | Run `40413055216` (Docs Quality, push to main, 2026-10-26T22:31:12Z): **completed / success** (10s) |
+| GitHub Release tag | NOT CREATED — intentionally deferred per policy until post-launch review |
+
+The publication-record update in this file is itself committed after the launch commit; the CI result of that follow-up commit is recorded in the final acceptance report, not assumed here.
 
 ## 6. Unresolved limitations
 
