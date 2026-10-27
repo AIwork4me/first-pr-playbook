@@ -6,13 +6,17 @@
 >
 > **10 lessons · 10 verifiable deliverables · 1 complete engineering workflow.**
 
+**New to open source? [Start with a 15-minute hands-on bug fix](labs/first-fix/README.md)** — run a real failing test, apply a minimal fix, and watch it pass. Guaranteed first success: Python only, no GPU, no account, no dependencies.
+
 You do not need to be an expert to contribute to open source. You need one small problem you can understand, reproduce, and verify — and a repeatable way of working that maintainers can trust.
 
 ## What this course gives you
 
 Most "how to contribute" tutorials stop at *how to click the PR button*. This course teaches the harder skill that sits underneath: turning a real user problem into a reproducible experiment, using an AI coding assistant without letting it invent results, and submitting a change that reviewers can check, trust, and maintain.
 
+- **[15-minute Starter Lab](labs/first-fix/README.md)** — a self-contained red → green bug fix, before any lesson.
 - **[Start here](docs/en/start-here.md)** — a 10-minute orientation before Lesson 01.
+- **[Git Quickstart](docs/en/git-quickstart.md)** — the minimum local Git you need from Lesson 02 onward.
 - **[Lesson index](lessons/en/README.md)** — all ten English lessons.
 - **[CodeX missions](prompts/en/README.md)** — copyable AI-assistant task prompts for every lesson.
 - **[Templates](templates/README.md)** — fill-in deliverable templates (English and Chinese).
@@ -53,6 +57,8 @@ Whether your PR is merged is always the maintainers' decision — this course do
 Every lesson is readable on its own, and each lesson's output becomes the next lesson's input.
 
 ## Quick start (15 minutes)
+
+Completely new to this? Warm up with the [Starter Lab](labs/first-fix/README.md) first — a 15-minute hands-on bug fix — then continue below. The steps below start the full course.
 
 1. Read [Start here](docs/en/start-here.md) and pick an open-source tool you actually use.
 2. Open [Lesson 01](lessons/en/01-find-an-issue.md) and search GitHub with `is:issue is:open label:"good first issue"`.

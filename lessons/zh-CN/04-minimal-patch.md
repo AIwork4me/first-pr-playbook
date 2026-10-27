@@ -1,7 +1,7 @@
 # 04｜如何指挥 AI 修复 Bug，而不是制造更多 Bug？
 
 > **本课只解决一个问题：怎样设计最小必要补丁？**
-> 预计 45–90 分钟｜前置：[第 03 课](03-root-cause-analysis.md)有证据支持的 RCA｜成果：[Patch Plan](../../templates/zh-CN/patch-plan.md) 与最小 diff
+> 预计 45–90 分钟｜前置：[第 03 课](03-root-cause-analysis.md)有证据支持的 RCA，且在自己的工作分支上进行（见 [Git 速成](../../docs/zh-CN/git-quickstart.md)）｜成果：[Patch Plan](../../templates/zh-CN/patch-plan.md) 与最小 diff
 
 ## A. 问题
 
@@ -15,7 +15,7 @@
 
 最小补丁只修改**已确认根因所要求**的内容——不顺手重构、不清理没碰过的代码风格、不「为未来」引入新抽象。最小*不等于*省略测试：旧代码失败、新代码通过的回归测试是修复的一部分，不是装饰。
 
-判断标准很简单：对 `git diff` 里的每个改动块，你都能回答「根因的哪一条要求了这个改动？」答不上来的改动块，删掉。
+判断标准很简单：对 `git diff` 里的每个改动块（如何读 diff 见 [Git 速成](../../docs/zh-CN/git-quickstart.md)），你都能回答「根因的哪一条要求了这个改动？」答不上来的改动块，删掉。
 
 ## D. 真实案例
 

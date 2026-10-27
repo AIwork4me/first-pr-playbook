@@ -2,6 +2,7 @@
 
 > **This lesson solves exactly one problem: which real issue should I start with?**
 > Time: 30–45 minutes · Prerequisite: a GitHub account · Deliverable: [issue selection card](../../templates/en/issue-selection.md)
+> Brand new to open source? Warm up first with the [15-minute Starter Lab](../../labs/first-fix/README.md) — run a real failing test and make it pass.
 
 ## A. The problem
 

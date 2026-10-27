@@ -1,7 +1,7 @@
 # Lesson 04 — How do I direct AI to fix a bug without creating three new ones?
 
 > **This lesson solves exactly one problem: how do I design the smallest patch that solves the problem?**
-> Time: 45–90 minutes · Prerequisite: an evidence-backed RCA from [Lesson 03](./03-root-cause-analysis.md) · Deliverable: [patch plan](../../templates/en/patch-plan.md) + a minimal diff
+> Time: 45–90 minutes · Prerequisite: an evidence-backed RCA from [Lesson 03](./03-root-cause-analysis.md), made on your own working branch ([Git Quickstart](../../docs/en/git-quickstart.md)) · Deliverable: [patch plan](../../templates/en/patch-plan.md) + a minimal diff
 
 ## A. The problem
 
@@ -15,7 +15,7 @@ You've confirmed the root cause. You hand it to an AI assistant, and it comes ba
 
 A minimal patch changes **only what the confirmed root cause requires** — no drive-by refactors, no style cleanups in untouched code, no new abstractions "for the future." Minimal does *not* mean skipping tests: a regression test that fails on the old code and passes on the new code is part of the fix, not decoration.
 
-The test is simple: for every hunk in your `git diff`, you can answer "which part of the root cause demands this?" If the answer is "it was just nicer this way," the hunk goes.
+The test is simple: for every hunk in your `git diff` (diff reading is covered in the [Git Quickstart](../../docs/en/git-quickstart.md)), you can answer "which part of the root cause demands this?" If the answer is "it was just nicer this way," the hunk goes.
 
 ## D. Real-world evidence
 

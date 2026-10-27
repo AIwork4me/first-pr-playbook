@@ -24,3 +24,22 @@ jobs:
 
       - name: Run documentation validation
         run: node scripts/validate-docs.mjs
+
+  starter-lab:
+    name: Starter Lab (intentional RED baseline + GREEN solution)
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify lab baseline, solution and rejection logic
+        run: python labs/first-fix/verify_lab.py --self-test

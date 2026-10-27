@@ -1,7 +1,7 @@
 # Lesson 02 — You found a bug. How do you reproduce it on your machine?
 
 > **This lesson solves exactly one problem: how do I reproduce a bug and record it honestly?**
-> Time: 45–90 minutes · Prerequisite: [Lesson 01](./01-find-an-issue.md) · Deliverable: [minimal reproduction report](../../templates/en/bug-reproduction.md)
+> Time: 45–90 minutes · Prerequisite: [Lesson 01](./01-find-an-issue.md) and the [Git Quickstart](../../docs/en/git-quickstart.md) (clone a repository, create a working branch, read `git status` / `git diff`) · Deliverable: [minimal reproduction report](../../templates/en/bug-reproduction.md)
 
 ## A. The problem
 
@@ -34,7 +34,7 @@ On the affected Windows runtime-compilation environment this raised `miopenStatu
 
 ## E. Step-by-step exercise
 
-**1. Write down your environment's identity first.** OS and version, dependency versions, the exact commit of the project you're testing, hardware. For GPU issues add driver, ROCm, and GPU architecture. Follow the repository's install documentation and avoid polluting your system Python — use a virtual environment or container where the project supports one.
+**1. Write down your environment's identity first.** OS and version, dependency versions, the exact commit of the project you're testing, hardware. Clone the project and create your working branch before editing anything — the [Git Quickstart](../../docs/en/git-quickstart.md) shows how. For GPU issues add driver, ROCm, and GPU architecture. Follow the repository's install documentation and avoid polluting your system Python — use a virtual environment or container where the project supports one.
 
 **2. Run the original steps exactly as reported.** Use the *original, unmodified* code and matching software versions. Record the commands, the full output, and the exception — not just the last line. The last line is where the error *surfaced*; the full log often shows where it *started*.
 

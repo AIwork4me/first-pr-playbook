@@ -1,7 +1,7 @@
 # 05｜AI 说 Bug 修好了，怎么证明它真的修好了？
 
 > **本课只解决一个问题：用什么证据证明修复有效？**
-> 预计 45–90 分钟｜前置：[第 04 课](04-minimal-patch.md)的最小补丁｜成果：[验证矩阵](../../templates/zh-CN/validation-matrix.md)
+> 预计 45–90 分钟｜前置：[第 04 课](04-minimal-patch.md)的最小补丁已提交到你的分支——基线与修复后两个状态各对应一个记录在案的 Commit（见 [Git 速成](../../docs/zh-CN/git-quickstart.md)）｜成果：[验证矩阵](../../templates/zh-CN/validation-matrix.md)
 
 ## A. 问题
 

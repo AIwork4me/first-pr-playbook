@@ -2,6 +2,7 @@
 
 > **本课只解决一个问题：我该从哪个真实问题开始？**
 > 预计 30–45 分钟｜前置：GitHub 账号｜成果：[Issue 选择卡](../../templates/zh-CN/issue-selection.md)
+> 第一次接触开源？先用 [15 分钟入门实验](../../labs/first-fix/README.zh-CN.md)热身——运行一个真实的失败测试，再让它通过。
 
 ## A. 问题
 

@@ -14,3 +14,7 @@ node_modules/
 # Local experiment logs and personal notes must not be published
 *.local.*
 private/
+
+# Python bytecode caches (Starter Lab runs Python inside the repo)
+__pycache__/
+.pytest_cache/

@@ -1,5 +1,7 @@
 # Course Map — Ten Steps Through One Complete PR
 
+Two onboarding modules sit around the lessons: the [15-minute Starter Lab](../../labs/first-fix/README.md) (before Lesson 01 — a guaranteed first bug fix) and the [Git Quickstart](git-quickstart.md) (between Lessons 01 and 02 — the local Git the map below assumes). Neither changes the ten lesson numbers.
+
 | # | Input | Learning action | Checkable output | Fall back to |
 |---|---|---|---|---|
 | 01 | Project interest + GitHub account | Choose a real issue | [Selection card](../../templates/en/issue-selection.md) | Pick a smaller/unclaimed problem |
