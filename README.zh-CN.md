@@ -8,9 +8,9 @@
 
 **你不需要先成为高手才能参与开源。先从一个自己能理解、能复现、能验证的小问题开始。**
 
-**第一次参与开源？[先花 15 分钟，亲手修复一个 Bug](labs/first-fix/README.zh-CN.md)。** 运行一个真实的失败测试、做出最小修复、亲眼看到它通过。只需 Python：不要 GPU、不要账号、不要安装任何依赖。
+**第一次参与开源？[花大约 15 分钟，亲手修复一个 Bug](labs/first-fix/README.zh-CN.md)。** 运行一个真实的失败测试、做出最小修复、亲眼看到它通过。完全独立、可离线完成：只需 Python——不要 GPU、不要账号、不要安装任何依赖。
 
-[🧪 入门实验（15 分钟）](labs/first-fix/README.zh-CN.md) · [🚀 开始第一课](lessons/zh-CN/01-find-an-issue.md) · [📚 课程导览](docs/zh-CN/start-here.md) · [🌱 Git 速成](docs/zh-CN/git-quickstart.md) · [🤖 CodeX 提示词](prompts/zh-CN/README.md) · [🧰 模板清单](templates/README.md) · [🔍 真实案例](case-studies/zh-CN/rocm-pr-13437.md)
+[🧪 入门实验（约 15 分钟）](labs/first-fix/README.zh-CN.md) · [🚀 开始第一课](lessons/zh-CN/01-find-an-issue.md) · [📚 课程导览](docs/zh-CN/start-here.md) · [🌱 Git 速成](docs/zh-CN/git-quickstart.md) · [🤖 CodeX 提示词](prompts/zh-CN/README.md) · [🧰 模板清单](templates/README.md) · [🔍 真实案例](case-studies/zh-CN/rocm-pr-13437.md)
 
 ## 这是一套怎样的教程？
 
@@ -45,9 +45,9 @@ GitHub 账号、能运行终端的电脑、任选一种 AI 编程助手，以及
 
 > **学习方式**：按照顺序完成一项真实问题的完整工作流。每篇也可独立阅读；开头提供前置材料，结尾有「一个练习 + 一个验收标准 + 下一课」。全部课程也有[英文版](lessons/en/README.md)。
 
-## 最快上手（15 分钟）
+## 最快上手（约 15 分钟）
 
-完全零基础？先用[入门实验](labs/first-fix/README.zh-CN.md)热身——15 分钟亲手修一个 Bug，再继续下面的正式课程。
+完全零基础？先用[入门实验](labs/first-fix/README.zh-CN.md)热身——约 15 分钟亲手修一个 Bug，再继续下面的正式课程。
 
 1. 阅读[从这里开始](docs/zh-CN/start-here.md)，选一个最近正在使用的开源工具。
 2. 打开[第 01 课](lessons/zh-CN/01-find-an-issue.md)，使用 GitHub 的 `good first issue` / `documentation` / `bug` 筛选问题。

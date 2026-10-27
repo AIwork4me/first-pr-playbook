@@ -7,7 +7,7 @@
 ```text
 新学习者
     ↓
-15 分钟入门实验——一次保底的成功体验（只需 Python，无需账号）
+入门实验（约 15 分钟）——一次本地、可验证的首次成功体验（只需 Python，无需账号）
     ↓
 第 01 课：选一个真实 Issue
     ↓
@@ -47,4 +47,4 @@ Git 速成——第 02 课起需要的本地 Git 操作
 
 可以。文档、安装脚本、简单软件 Bug 都不需要 GPU。若你选择 GPU 问题，请先读[云端 GPU 实验室](cloud-gpu-lab.md)。云上 Linux 结果不能自动代表 Windows、本地特定驱动或另一种 GPU 架构的结果。
 
-**现在开始：第一次参与开源？先做 [15 分钟入门实验](../../labs/first-fix/README.zh-CN.md)——从红灯到绿灯，亲手修一个真实的 Bug。否则直接进入[第 01 课｜找到你的 Issue](../../lessons/zh-CN/01-find-an-issue.md)；进入第 02 课前，请先读 [Git 速成](git-quickstart.md)。** [English version](../en/start-here.md)
+**现在开始：第一次参与开源？先做[入门实验](../../labs/first-fix/README.zh-CN.md)（设计目标约 15 分钟）——从红灯到绿灯，亲手修一个真实的 Bug。否则直接进入[第 01 课｜找到你的 Issue](../../lessons/zh-CN/01-find-an-issue.md)；进入第 02 课前，请先读 [Git 速成](git-quickstart.md)。** [English version](../en/start-here.md)

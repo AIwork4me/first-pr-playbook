@@ -81,13 +81,41 @@ git switch -c experiment/new-note      # 创建并切换到新分支
 git add notes.txt                      # 把改动记录在"这条"分支上
 git commit -m "add experimental line"
 git status                             # 显示：On branch experiment/new-note
-git switch master                      # 跳回去（较老的 Git 用 git checkout master；
-                                       # 有些仓库的默认分支叫 "main"）
+git branch                             # 列出分支；* 标记你当前所在的分支
+git switch main                        # 切回默认分支：使用上面 git branch
+                                       # 显示的、没有 * 的那个名字
+                                       #（Git 会把它命名为 main 或 master）
 ```
 
-切回去之后再打开 `notes.txt`：你的 "experimental line" 不见了——不是被删除，而是被安全地存放在另一条分支上（能这样是因为你先在那条分支上*提交*了它；未提交的改动会跟着你一起换分支）。再执行 `git switch experiment/new-note` 切换过去，它又回来了。**这就是分支的心智模型：分支是一张你可以随时离开的办公桌，磁盘上的文件永远反映你当前所在的分支。**（沙盒里用的是 `master`；Git 根据版本会创建 `master` 或 `main`——它们都只是"默认分支"的名字。）
+你的 Git 用的是哪个名字？`git branch` 会打印类似 `experiment/new-note` 和 `main`——或者 `master` 的内容。**不要预设任何一个名字：先运行 `git branch`，切换到没有 `*` 的那一项。**（较老的 Git 用 `git checkout <名字>` 也能切换。）
 
-完成后可以删除沙盒：先 `cd ~`，然后 `rm -rf git-practice`（PowerShell：`Remove-Item -Recurse -Force git-practice`）。
+切回去之后再打开 `notes.txt`：你的 "experimental line" 不见了——不是被删除，而是被安全地存放在另一条分支上（能这样是因为你先在那条分支上*提交*了它；未提交的改动会跟着你一起换分支）。再执行 `git switch experiment/new-note` 切换过去，它又回来了。**这就是分支的心智模型：分支是一张你可以随时离开的办公桌，磁盘上的文件永远反映你当前所在的分支。**
+
+### 清理沙盒（可选——以及怎样安全地删除）
+
+你**不是必须删除**什么：沙盒只是一个小文件夹，留着不占什么空间。但真实的开源工作迟早会遇到删除命令，所以现在就把安全模式学会——**先查看，再删除，而且只删除你刚刚列出并确认过的文件夹**：
+
+```bash
+cd ~                    # 回到用户主目录
+pwd                     # 再次确认位置：应打印主目录路径
+ls -A git-practice      # 查看：必须只有 notes.txt 和 .git
+                        #（-A 会列出 .git 这样的隐藏条目）
+rm -r git-practice      # 确认无误后才删除（macOS / Linux）
+```
+
+PowerShell 等价写法，同样遵守先查看再删除：
+
+```powershell
+cd ~
+pwd
+dir git-practice -Force   # 查看：必须只有 notes.txt 和 .git
+                          #（-Force 会列出 .git 这样的隐藏条目）
+Remove-Item -Recurse -Force git-practice
+```
+
+- 如果查看步骤显示出**任何你不认识的东西**——多出来的文件、别的文件夹——**立即停止**。那个文件夹不是本沙盒，删除它从来不是这个练习的一部分。
+- 想要更直观的确认？直接在文件管理器（资源管理器 / Finder）里删除该文件夹——你能亲眼看到什么消失了。
+- 永远不要对没有先列出来查看过的文件夹执行删除命令——包括上面的命令。`rm -r` 和 `Remove-Item -Recurse` 会删除指定文件夹内的**全部内容**。
 
 ## 安全地"阅读"一个真实仓库
 
@@ -151,6 +179,7 @@ git status        # 随时确认：你还在"自己的"分支上
 | `git diff` / `git diff --stat` | 逐行 / 按文件显示改动 | 否（只读） |
 | `git switch -c <名字>` | 创建并切换到新分支 | 仅本地 |
 | `git switch <名字>` | 在已有分支间切换 | 仅本地 |
+| `git branch` | 列出本地分支；`*` 标记当前分支 | 否（只读） |
 | `git add <文件>` | 把改动暂存到下一次提交 | 仅本地 |
 | `git commit -m "信息"` | 录制一个快照 | 仅本地 |
 | `git remote -v` | 列出这份拷贝关联的 URL | 否（只读） |

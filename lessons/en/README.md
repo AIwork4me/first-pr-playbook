@@ -17,4 +17,4 @@ Ten lessons, one skill and one verifiable deliverable each. Each lesson's output
 | 09 | [Debug CI](09-debug-ci.md) | Attribute CI failures correctly | [CI triage record](../../templates/en/ci-triage.md) |
 | 10 | [Merge and handoff](10-merge-and-handoff.md) | Close out and keep the record | [Portfolio record](../../templates/en/portfolio-handoff.md) |
 
-Every lesson links to its CodeX mission in [prompts/en/](../../prompts/en/README.md) and its Chinese counterpart. New here? Do the [15-minute Starter Lab](../../labs/first-fix/README.md) for a guaranteed first success, then read [Start here](../../docs/en/start-here.md) — and before Lesson 02, the [Git Quickstart](../../docs/en/git-quickstart.md).
+Every lesson links to its CodeX mission in [prompts/en/](../../prompts/en/README.md) and its Chinese counterpart. New here? Try the [Starter Lab](../../labs/first-fix/README.md) (designed for about 15 minutes) for a quick, local first success, then read [Start here](../../docs/en/start-here.md) — and before Lesson 02, the [Git Quickstart](../../docs/en/git-quickstart.md).

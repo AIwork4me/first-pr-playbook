@@ -17,4 +17,4 @@
 | 09 | [处理 CI](09-debug-ci.md) | 正确归因 CI 失败 | [CI 排查表](../../templates/zh-CN/ci-triage.md) |
 | 10 | [Merge 与交付](10-merge-and-handoff.md) | 专业收尾并沉淀记录 | [作品集记录](../../templates/zh-CN/portfolio-handoff.md) |
 
-每课均链接对应的 CodeX 任务（[prompts/zh-CN/](../../prompts/zh-CN/README.md)）与英文版课程。第一次来？先用 [15 分钟入门实验](../../labs/first-fix/README.zh-CN.md)完成一次保底的成功体验，再读[从这里开始](../../docs/zh-CN/start-here.md)；进入第 02 课前，先完成 [Git 速成](../../docs/zh-CN/git-quickstart.md)。
+每课均链接对应的 CodeX 任务（[prompts/zh-CN/](../../prompts/zh-CN/README.md)）与英文版课程。第一次来？先做[入门实验](../../labs/first-fix/README.zh-CN.md)（设计目标约 15 分钟），获得一次快速的本地首次成功，再读[从这里开始](../../docs/zh-CN/start-here.md)；进入第 02 课前，先完成 [Git 速成](../../docs/zh-CN/git-quickstart.md)。
