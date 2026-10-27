@@ -2,11 +2,12 @@
 
 ## Unreleased — P0 beginner onboarding hardening
 
-- Added a 15-minute Starter Lab (`labs/first-fix/`, English + Chinese): a self-contained red → green exercise — run a real failing `unittest` case, apply a minimal fix to `normalize_title()`, rerun the same tests to green. Python standard library only; no GPU, account, network, or dependencies.
+- Added a Starter Lab designed for about 15 minutes (`labs/first-fix/`, English + Chinese): a self-contained red → green exercise — run a real failing `unittest` case, apply a minimal fix to `normalize_title()`, rerun the same tests to green. Python standard library only; no GPU, account, network, or dependencies. Acquired via GitHub's Code → Download ZIP — no Git knowledge or account needed.
 - Lab safety design: the intentionally buggy `buggy.py` baseline is validated, not "fixed"; the test file is named `run_tests.py` so pytest / `unittest discover` patterns never auto-discover the intentional failure; `verify_lab.py` proves in a temp directory that the baseline fails with exactly the expected assertion, the reference solution passes the same tests, and corrupted states are rejected (`--self-test`).
 - Added `docs/en/git-quickstart.md` + `docs/zh-CN/git-quickstart.md`: local Git (repo/clone/branch, `status`, `diff`, `remote -v`, branch-before-editing, why upstream is not a playground) positioned between Lesson 01 and Lesson 02, cross-platform (Windows PowerShell / macOS / Linux), no GitHub login required.
 - Integrated onboarding into navigation: both READMEs gained a first-screen beginner entry; start-here pages show the new sequence (Lab → 01 → Git Quickstart → 02–05 → 06); Lessons 01/02/04/05/06 gained short prerequisite links; Lesson 06 now continues from the Git-Quickstart working branch (Option A) instead of assuming a fresh fork clone; course map and lesson indexes updated.
 - Extended `scripts/validate-docs.mjs` with lab structure/parity checks and git-quickstart parity; extended the Docs Quality workflow with a starter-lab job (`python labs/first-fix/verify_lab.py --self-test`) on ubuntu/windows/macos.
+- Review hardening (beginner-safety pass): Git Quickstart no longer assumes the default branch is `master` (`git branch` discovery works with `main` or `master`); the Starter Lab explains Code → Download ZIP acquisition (no Git or account needed); sandbox cleanup now follows an inspect-first, never-blind-delete pattern; beginner-success and completion-time claims qualified as design goals rather than guarantees, in both languages.
 
 ## 2026-10-27 — English-first bilingual release
 

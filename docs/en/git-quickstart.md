@@ -81,13 +81,41 @@ git switch -c experiment/new-note      # create and move to a new branch
 git add notes.txt                      # record the change on THIS branch
 git commit -m "add experimental line"
 git status                             # shows: On branch experiment/new-note
-git switch master                      # jump back (older Git: git checkout master;
-                                       # some repos call the default branch "main")
+git branch                             # lists your branches; * marks the current one
+git switch main                        # jump back to the default branch: use the
+                                       # name git branch just showed WITHOUT the *
+                                       # (Git names it "main" or "master")
 ```
 
-Open `notes.txt` after switching back: your "experimental line" is gone — not deleted, just stored safely on the other branch (this works because you *committed* it there first; uncommitted edits travel with you between branches). Switch again with `git switch experiment/new-note` and it reappears. **That is the mental model: a branch is a desk you can walk away from, and the file on disk always reflects the branch you are standing on.** (This sandbox used `master`; Git creates `master` or `main` depending on version — both are just "the default branch".)
+Which name did your Git use? `git branch` prints something like `experiment/new-note` and `main` — or `master`. **Don't assume either name: run `git branch` and switch to the entry without the `*`.** (Older Git: `git checkout <name>` switches too.)
 
-When done, you can delete the sandbox: `cd ~` then `rm -rf git-practice` (PowerShell: `Remove-Item -Recurse -Force git-practice`).
+Open `notes.txt` after switching back: your "experimental line" is gone — not deleted, just stored safely on the other branch (this works because you *committed* it there first; uncommitted edits travel with you between branches). Switch again with `git switch experiment/new-note` and it reappears. **That is the mental model: a branch is a desk you can walk away from, and the file on disk always reflects the branch you are standing on.**
+
+### Cleaning up the sandbox (optional — and how to delete safely)
+
+You never *have* to delete anything: the sandbox is one tiny folder, and keeping it costs nothing. Real open-source work will ask you to run delete commands eventually, so this is the safe pattern to learn now — **inspect first, delete second, and only ever name a folder you just listed**:
+
+```bash
+cd ~                    # go to your home folder
+pwd                     # double-check where you are: prints your home path
+ls -A git-practice      # INSPECT: must show only notes.txt and .git
+                        # (-A includes hidden entries like .git)
+rm -r git-practice      # only now delete (macOS / Linux)
+```
+
+PowerShell equivalent, same inspect-first rule:
+
+```powershell
+cd ~
+pwd
+dir git-practice -Force   # INSPECT: must show only notes.txt and .git
+                          # (-Force includes hidden entries like .git)
+Remove-Item -Recurse -Force git-practice
+```
+
+- If the inspect step shows **anything you don't recognize** — extra files, other folders — **stop**. That folder is not this sandbox, and deleting it was never part of the exercise.
+- Prefer visual certainty? Delete the folder in File Explorer / Finder — you see exactly what disappears.
+- Never run a delete command — including these — against a folder you haven't listed first. `rm -r` and `Remove-Item -Recurse` remove *everything inside* the named folder.
 
 ## Reading a real repository safely
 
@@ -151,6 +179,7 @@ Everything you did on this page lives on your machine. The public project cannot
 | `git diff` / `git diff --stat` | Shows changes line by line / per file | No (read-only) |
 | `git switch -c <name>` | Creates and switches to a new branch | Local only |
 | `git switch <name>` | Moves between existing branches | Local only |
+| `git branch` | Lists local branches; `*` marks the current one | No (read-only) |
 | `git add <file>` | Stages a change for the next commit | Local only |
 | `git commit -m "message"` | Records a snapshot | Local only |
 | `git remote -v` | Lists the URLs this copy talks to | No (read-only) |

@@ -1,4 +1,4 @@
-# Starter Lab — Fix Your First Bug in 15 Minutes
+# Starter Lab — Fix Your First Bug (about 15 minutes)
 
 **[简体中文版](README.zh-CN.md)**
 
@@ -12,7 +12,7 @@ understand the failure → apply a minimal fix → run the test again →
 see PASS → understand what changed and why
 ```
 
-**Timing.** The exercise itself takes most learners about **15 minutes *after* Python is installed**. If you still need to install Python, allow an extra 10–20 minutes — that is a one-time setup cost, not part of the exercise. It is fine to take longer than 15 minutes; the goal is understanding, not speed.
+**Timing.** The exercise is **designed to take about 15 minutes *after* Python is installed** — that is a goal to aim for, not a promise about your pace. If you still need to install Python, allow an extra 10–20 minutes — a one-time setup cost, not part of the exercise. Taking longer is completely fine; the goal is understanding, not speed.
 
 ## Step 1 — Prepare: check that Python is available
 
@@ -30,17 +30,27 @@ If one of these prints something like `Python 3.11.4`, you are ready. If every c
 
 ## Step 2 — Run the failing test
 
-Open a terminal **in the repository folder you downloaded** (the folder that contains this course's top-level `README.md` and the `labs/` directory), then move into the lab folder and run the tests:
+**Get the lab files first — no Git and no GitHub account needed:**
+
+1. In your browser, open this repository's page on GitHub and click the green **`<> Code`** button, then **Download ZIP**.
+2. Find the downloaded `first-pr-playbook-main.zip` (usually in your Downloads folder) and extract it: Windows — right-click → **Extract All…**; macOS — double-click the ZIP; Linux — run `unzip first-pr-playbook-main.zip`.
+3. The extracted folder is named **`first-pr-playbook-main`** (GitHub appends the branch name). This folder — the one containing the course's top-level `README.md` and a `labs/` directory — is "the repository folder" in the commands below. (If you already cloned the repository with Git, you already have these files.)
+
+Now open a terminal and move into the lab folder, then run the tests:
 
 ```bash
-# Windows (PowerShell or Command Prompt)
-cd labs\first-fix
+# Windows (PowerShell)
+cd ~\Downloads\first-pr-playbook-main     # skip this line if your terminal already
+cd labs\first-fix                        # opened inside the extracted folder
 py run_tests.py
 
 # macOS / Linux
-cd labs/first-fix
+cd ~/Downloads/first-pr-playbook-main    # skip this line if your terminal already
+cd labs/first-fix                        # opened inside the extracted folder
 python3 run_tests.py
 ```
+
+Windows tip: in File Explorer, Shift+right-click the extracted `first-pr-playbook-main` folder and choose **Open PowerShell window here** (Windows 10) or **Open in Terminal** (Windows 11) — then start at `cd labs\first-fix`.
 
 **Before you press Enter — predict.** The lab file `buggy.py` contains `normalize_title("  fix  typo   in docs  ")`. What string do you think comes back? Write your guess down, then run.
 
