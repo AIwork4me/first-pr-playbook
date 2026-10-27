@@ -33,6 +33,8 @@ git init
 Initialized empty Git repository in .../git-practice/.git/
 ```
 
+> **如果 `mkdir` 提示文件夹已存在**：不要 `cd` 进去——已存在的 `git-practice` 里可能是别人的真实文件。换一个新名字（如 `git-practice-2`），并在下方所有命令中统一使用它。`mkdir` 失败时什么都没有创建、没有造成任何影响——换个名字继续即可。
+
 ```bash
 # 2. 创建文件：用任意文本编辑器（记事本、VS Code、TextEdit、gedit）
 #    在 git-practice 文件夹里保存一个 notes.txt，内容为：
@@ -72,7 +74,12 @@ git diff
 +my second note
 ```
 
-`git diff` 逐行显示自上次提交以来改了什么。亲自读这个输出——而不是依赖记忆或 AI 的转述——正是第 04、05 课要建立的核心习惯。
+`git diff` 逐行显示自上次提交以来改了什么。亲自读这个输出——而不是依赖记忆或 AI 的转述——正是第 04、05 课要建立的核心习惯。读完之后，用与之前完全相同的方式记录这个改动：
+
+```bash
+git add notes.txt
+git commit -m "add second note"
+```
 
 ```bash
 # 5. 试试分支——本页的重点
@@ -82,12 +89,11 @@ git add notes.txt                      # 把改动记录在"这条"分支上
 git commit -m "add experimental line"
 git status                             # 显示：On branch experiment/new-note
 git branch                             # 列出分支；* 标记你当前所在的分支
-git switch main                        # 切回默认分支：使用上面 git branch
-                                       # 显示的、没有 * 的那个名字
-                                       #（Git 会把它命名为 main 或 master）
+git switch -                           # 回到你之前所在的分支
+                                       #（无论默认分支叫什么名字都有效）
 ```
 
-你的 Git 用的是哪个名字？`git branch` 会打印类似 `experiment/new-note` 和 `main`——或者 `master` 的内容。**不要预设任何一个名字：先运行 `git branch`，切换到没有 `*` 的那一项。**（较老的 Git 用 `git checkout <名字>` 也能切换。）
+「git switch -」（一个短横线）会带你回到*当前分支之前*你所处的分支——在这个流程里，就是 `git init` 创建的那条默认分支，无论 Git 把它命名为 `main` 还是 `master`。不需要查名字，也不需要猜。上面的 `git branch` 仍会列出所有分支并用 `*` 标记当前分支——真正需要名字的时候用它。（较老的 Git 用 `git checkout -` 也能实现。）
 
 切回去之后再打开 `notes.txt`：你的 "experimental line" 不见了——不是被删除，而是被安全地存放在另一条分支上（能这样是因为你先在那条分支上*提交*了它；未提交的改动会跟着你一起换分支）。再执行 `git switch experiment/new-note` 切换过去，它又回来了。**这就是分支的心智模型：分支是一张你可以随时离开的办公桌，磁盘上的文件永远反映你当前所在的分支。**
 
@@ -180,12 +186,13 @@ git status        # 随时确认：你还在"自己的"分支上
 | `git switch -c <名字>` | 创建并切换到新分支 | 仅本地 |
 | `git switch <名字>` | 在已有分支间切换 | 仅本地 |
 | `git branch` | 列出本地分支；`*` 标记当前分支 | 否（只读） |
+| `git switch -` | 返回上一次所在的分支，无需知道名字 | 仅本地 |
 | `git add <文件>` | 把改动暂存到下一次提交 | 仅本地 |
 | `git commit -m "信息"` | 录制一个快照 | 仅本地 |
 | `git remote -v` | 列出这份拷贝关联的 URL | 否（只读） |
 | `git branch -a` | 列出所有分支（含远程） | 否（只读） |
 
-`git switch` 需要 Git 2.23+（2019 年）——用 `git --version` 检查。更老的 Git 用 `git checkout -b <名字>` 建分支、`git checkout <名字>` 切换。
+`git switch` 需要 Git 2.23+（2019 年）——用 `git --version` 检查。更老的 Git：`git checkout -b <名字>` 建分支，`git checkout <名字>` 切换，`git checkout -` 返回上一个分支。
 
 ## Windows / macOS / Linux 差异
 
@@ -195,7 +202,7 @@ git status        # 随时确认：你还在"自己的"分支上
 | 文件夹路径 | `cd labs\first-fix`（反斜杠；PowerShell 也接受 `/`） | `cd labs/first-fix` |
 | 用户主目录 | `cd ~` | `cd ~` |
 | 默认编辑器 | 系统自带记事本 | TextEdit（macOS）/ gedit 或任意编辑器 |
-| 删除沙盒文件夹 | `Remove-Item -Recurse -Force git-practice` | `rm -rf git-practice` |
+| 删除沙盒 | 可选——按上方**「清理沙盒」**一节的先查看再删除步骤执行；切勿粘贴没有读过的删除命令 | 所有平台完全相同 |
 
 本课程从不假设 Bash 语法在 PowerShell 里也能用——凡命令有平台差异，课程都会同时给出两种写法。
 
