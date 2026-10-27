@@ -1,7 +1,7 @@
 # 06｜第一次提交 PR：Fork、Branch、Commit、Push 怎么做？
 
 > **本课只解决一个问题：怎样安全地把改动提交给上游审查？**
-> 预计 45–75 分钟｜前置：[第 05 课](05-prove-the-fix.md)的补丁与验证证据｜成果：一个真实、可打开的 PR 链接
+> 预计 45–75 分钟｜前置：[第 05 课](05-prove-the-fix.md)的补丁与验证证据，位于你在 [Git 速成](../../docs/zh-CN/git-quickstart.md)中创建的工作分支上｜成果：一个真实、可打开的 PR 链接
 
 ## A. 问题
 
@@ -22,6 +22,8 @@
 - **Push（推送）**：把本地分支上传到你 GitHub 上的 Fork。
 - **Pull Request（PR）**：请求维护者审阅你的分支，并在接受时合并进官方代码。
 
+Clone、分支、Commit 与 remote 在 [Git 速成](../../docs/zh-CN/git-quickstart.md)里已经动手练过；本课只新增 Fork 和 PR 本身，其余概念在此集中复述一遍。
+
 [PR #13437](https://github.com/ROCm/rocm-libraries/pull/13437) 的 head 分支位于 Fork `AIwork4me/rocm-libraries`，base 是 `ROCm/rocm-libraries` 的 `develop`——完整规模的同一条流水线。
 
 ## D. 真实案例
@@ -32,7 +34,20 @@
 
 **① 先读目标仓库的贡献规范。** 记下要求的 base 分支、提交信息风格、是否必须先关联 Issue。如果仓库提供 PR 模板，第 07 课会用到。
 
-**② 在 GitHub 页面点 Fork，然后 Clone 你的 Fork**，并把官方仓库挂为 `upstream`：
+**② 把已验证的成果送上 GitHub。** 在上游仓库页面点击 **Fork**（一次点击，在你的账号下创建 `<YOUR_USER>/<REPO>`）。然后按你的工作所在位置选一条路径：
+
+**路线 A——在现有工作克隆中继续（推荐；这正是 [Git 速成](../../docs/zh-CN/git-quickstart.md)在第 02 课之前搭建的环境）。** 你的修复已经提交在某条分支（例如 `investigate/issue-3956`）上，该克隆的 `origin` 指向官方仓库。把你的 Fork 挂为第二个远程，把分支推上去：
+
+```bash
+git status        # 确认：在"你的"分支上，没有意外改动
+git remote -v     # origin = 你克隆时用的官方仓库
+git remote add fork https://github.com/<YOUR_USER>/<REPO>.git
+git push -u fork investigate/issue-<编号>
+```
+
+什么都不用搬、什么都不用重做——你在第 02–05 课建好的分支，原样成为 PR 分支。
+
+**路线 B——从 Fork 的新克隆开始**（很多 `CONTRIBUTING.md` 描述的布局）。克隆你的 Fork，把官方仓库挂为 `upstream`，从正确的 base 建分支：
 
 ```bash
 git clone https://github.com/<YOUR_USER>/<REPO>.git
@@ -43,7 +58,9 @@ git fetch upstream
 git switch -c fix/<short-topic> upstream/<BASE_BRANCH>
 ```
 
-**③ 把已验证的修复移入这个分支。** 暂存前先审阅——只添加 Patch Plan 覆盖的文件：
+如果你之前的工作在**另一个**克隆里，不要在克隆之间盲拷未提交的文件。最小补丁本来就小——在这里重新应用最终 diff 通常最快也最安全；若想正确地搬运提交，先让助手讲清 `git format-patch` / `git am` 再使用。
+
+**③ 提交——或复查你已有的提交。** 路线 A 中，提交在第 04–05 课已经完成：复查即可（`git log --oneline -5`、`git diff <BASE>..<你的分支>`）。路线 B 中，暂存前先审阅，只添加 Patch Plan 覆盖的文件，然后推送：
 
 ```bash
 git status

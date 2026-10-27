@@ -1,7 +1,7 @@
 # Lesson 05 — The AI says it's fixed. How do you prove it?
 
 > **This lesson solves exactly one problem: what evidence shows the fix actually works?**
-> Time: 45–90 minutes · Prerequisite: the minimal patch from [Lesson 04](./04-minimal-patch.md) · Deliverable: [validation matrix](../../templates/en/validation-matrix.md)
+> Time: 45–90 minutes · Prerequisite: the minimal patch from [Lesson 04](./04-minimal-patch.md), committed on your branch — baseline and patched states need two recorded commits ([Git Quickstart](../../docs/en/git-quickstart.md)) · Deliverable: [validation matrix](../../templates/en/validation-matrix.md)
 
 ## A. The problem
 

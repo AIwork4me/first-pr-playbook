@@ -35,7 +35,7 @@ const fileSet = new Set(allFiles.map(rel));
 
 // ---------------------------------------------------------------- 1. UTF-8 + read
 const contents = new Map();
-console.log(`\n[1/7] UTF-8 integrity — ${allFiles.length} Markdown files`);
+console.log(`\n[1/8] UTF-8 integrity — ${allFiles.length} Markdown files`);
 for (const f of allFiles) {
   try {
     contents.set(rel(f), decoder.decode(readFileSync(f)));
@@ -62,7 +62,7 @@ function anchorsOf(md) {
 }
 
 // ---------------------------------------------------------------- 3. internal links
-console.log('\n[2/7] Internal links and relative paths');
+console.log('\n[2/8] Internal links and relative paths');
 const anchorCache = new Map();
 for (const [file, md] of contents) {
   const text = stripFences(md);
@@ -95,7 +95,7 @@ for (const [file, md] of contents) {
 console.log('  link scan complete');
 
 // ---------------------------------------------------------------- 4. lesson parity + structure
-console.log('\n[3/7] Lesson parity and structure (10 + 10, sections A–J)');
+console.log('\n[3/8] Lesson parity and structure (10 + 10, sections A–J)');
 const LESSON_NAMES = [
   '01-find-an-issue.md', '02-reproduce-a-bug.md', '03-root-cause-analysis.md', '04-minimal-patch.md',
   '05-prove-the-fix.md', '06-open-first-pr.md', '07-write-pr-description.md', '08-handle-review.md',
@@ -126,7 +126,7 @@ for (const locale of ['en', 'zh-CN']) {
 console.log('  10 EN + 10 ZH lessons checked');
 
 // ---------------------------------------------------------------- 5. prompts parity + sections
-console.log('\n[4/7] CodeX mission parity and required sections');
+console.log('\n[4/8] CodeX mission parity and required sections');
 const MISSION_KEYS = {
   en: ['**Mission', '**Context', '**Inputs', '**Constraints', '**Steps', '**Validation', '**Deliverables', '**Stop conditions'],
   'zh-CN': ['**任务', '**背景', '**输入', '**约束', '**步骤', '**验证', '**交付', '**停止条件'],
@@ -144,20 +144,79 @@ for (const locale of ['en', 'zh-CN']) {
 console.log('  10 EN + 10 ZH missions checked');
 
 // ---------------------------------------------------------------- 6. templates/docs parity, case studies, READMEs
-console.log('\n[5/7] Templates & docs parity');
+console.log('\n[5/8] Templates & docs parity');
 const TEMPLATE_NAMES = ['issue-selection.md', 'bug-reproduction.md', 'rca.md', 'patch-plan.md', 'validation-matrix.md',
   'pr-description.md', 'review-response.md', 'ci-triage.md', 'portfolio-handoff.md'];
 for (const t of TEMPLATE_NAMES) {
   if (!contents.has(`templates/en/${t}`)) fail(`templates/en/${t}: missing`);
   if (!contents.has(`templates/zh-CN/${t}`)) fail(`templates/zh-CN/${t}: missing`);
 }
-const DOC_NAMES = ['start-here.md', 'course-map.md', 'glossary.md', 'faq.md', 'cloud-gpu-lab.md', 'editorial-standards.md'];
+const DOC_NAMES = ['start-here.md', 'course-map.md', 'git-quickstart.md', 'glossary.md', 'faq.md', 'cloud-gpu-lab.md', 'editorial-standards.md'];
 for (const d of DOC_NAMES) {
   if (!contents.has(`docs/en/${d}`)) fail(`docs/en/${d}: missing`);
   if (!contents.has(`docs/zh-CN/${d}`)) fail(`docs/zh-CN/${d}: missing`);
 }
 
-console.log('\n[6/7] Case studies and governance files');
+console.log('\n[6/8] Starter Lab and Git Quickstart structure');
+{
+  // --- labs/first-fix: required files -------------------------------
+  const LAB = 'labs/first-fix';
+  const labFiles = ['README.md', 'README.zh-CN.md', 'buggy.py', 'run_tests.py', 'verify_lab.py', 'solutions/reference_solution.py'];
+  for (const f of labFiles) {
+    if (fileSet.has(`${LAB}/${f}`)) continue;
+    // non-.md files are not in contents; verify on disk
+    try { statSync(join(ROOT, LAB, f)); } catch { fail(`${LAB}/${f}: missing`); }
+  }
+  const labEn = contents.get(`${LAB}/README.md`) ?? '';
+  const labZh = contents.get(`${LAB}/README.zh-CN.md`) ?? '';
+  for (let i = 1; i <= 7; i++) {
+    if (!labEn.includes(`## Step ${i} `) && !labEn.includes(`## Step ${i} —`)) fail(`${LAB}/README.md: missing "## Step ${i}" heading`);
+    if (!labZh.includes(`## 步骤 ${i}`)) fail(`${LAB}/README.zh-CN.md: missing "## 步骤 ${i}" heading`);
+  }
+  if (!labEn.includes('](README.zh-CN.md)')) fail(`${LAB}/README.md: missing link to README.zh-CN.md`);
+  if (!labZh.includes('](README.md)')) fail(`${LAB}/README.zh-CN.md: missing link to README.md`);
+  if (!/## Troubleshooting/i.test(labEn)) fail(`${LAB}/README.md: missing Troubleshooting section`);
+  if (!labZh.includes('## 故障排查')) fail(`${LAB}/README.zh-CN.md: missing 故障排查 section`);
+  // --- protect the intentional bug ----------------------------------
+  const buggy = readFileSync(join(ROOT, LAB, 'buggy.py'), 'utf-8');
+  const solution = readFileSync(join(ROOT, LAB, 'solutions', 'reference_solution.py'), 'utf-8');
+  if (/join\s*\(\s*[^)]*split\s*\(/.test(buggy) || /re\.sub/.test(buggy)) fail(`${LAB}/buggy.py: appears to contain the fix — the baseline bug must stay broken`);
+  if (!/join\s*\(\s*[^)]*split\s*\(/.test(solution)) fail(`${LAB}/solutions/reference_solution.py: expected whitespace-collapsing fix not found`);
+  const runTests = readFileSync(join(ROOT, LAB, 'run_tests.py'), 'utf-8');
+  if (/normalize_title\s*\(/.test(buggy) === false) fail(`${LAB}/buggy.py: normalize_title() not found`);
+  if (!runTests.includes('def test_')) fail(`${LAB}/run_tests.py: no test methods found`);
+
+  // --- git-quickstart: bilingual + required topics ------------------
+  const gqEn = contents.get('docs/en/git-quickstart.md') ?? '';
+  const gqZh = contents.get('docs/zh-CN/git-quickstart.md') ?? '';
+  if (!gqEn.includes('](../zh-CN/git-quickstart.md)')) fail('docs/en/git-quickstart.md: missing cross-language link');
+  if (!gqZh.includes('](../en/git-quickstart.md)')) fail('docs/zh-CN/git-quickstart.md: missing cross-language link');
+  for (const [label, en, zh] of [
+    ['git remote -v', 'git remote -v', 'git remote -v'],
+    ['git status', 'git status', 'git status'],
+    ['git diff', 'git diff', 'git diff'],
+    ['branch command', 'git switch -c', 'git switch -c'],
+    ['CONTRIBUTING.md', 'CONTRIBUTING.md', 'CONTRIBUTING.md'],
+  ]) {
+    if (!stripFences(en ? gqEn : '').includes(en)) fail(`docs/en/git-quickstart.md: expected "${label}" outside code fences`);
+    if (!stripFences(zh ? gqZh : '').includes(zh)) fail(`docs/zh-CN/git-quickstart.md: expected "${label}" outside code fences`);
+  }
+
+  // --- onboarding integration ----------------------------------------
+  const startEn = contents.get('docs/en/start-here.md') ?? '';
+  const startZh = contents.get('docs/zh-CN/start-here.md') ?? '';
+  if (!startEn.includes('](../../labs/first-fix/README.md)')) fail('docs/en/start-here.md: missing link to Starter Lab');
+  if (!startZh.includes('](../../labs/first-fix/README.zh-CN.md)')) fail('docs/zh-CN/start-here.md: missing link to Starter Lab');
+  if (!startEn.includes('](git-quickstart.md)')) fail('docs/en/start-here.md: missing link to git-quickstart');
+  if (!startZh.includes('](git-quickstart.md)')) fail('docs/zh-CN/start-here.md: missing link to git-quickstart');
+  const rootEn = contents.get('README.md') ?? '';
+  const rootZh = contents.get('README.zh-CN.md') ?? '';
+  if (!rootEn.includes('](labs/first-fix/README.md)')) fail('README.md: missing link to Starter Lab');
+  if (!rootZh.includes('](labs/first-fix/README.zh-CN.md)')) fail('README.zh-CN.md: missing link to Starter Lab');
+}
+console.log('  lab files, step structure, intentional-bug guard, quickstart parity checked');
+
+console.log('\n[7/8] Case studies and governance files');
 for (const must of [
   'case-studies/README.md', 'case-studies/en/rocm-pr-13437.md', 'case-studies/zh-CN/rocm-pr-13437.md',
   'README.md', 'README.zh-CN.md', 'AGENTS.md', 'CHANGELOG.md', 'ROADMAP.md',
@@ -169,7 +228,7 @@ for (const must of [
   if (must.endsWith('.md') ? !contents.has(must) : !existsSync(join(ROOT, must))) fail(`required file missing: ${must}`);
 }
 
-console.log('\n[7/7] Language-switch links');
+console.log('\n[8/8] Language-switch links');
 {
   const en = contents.get('README.md') ?? '';
   const zh = contents.get('README.zh-CN.md') ?? '';
@@ -181,7 +240,7 @@ console.log('\n[7/7] Language-switch links');
 console.log('\n=========================================');
 const counts = {
   lessons: contents ? LESSON_NAMES.length * 2 : 0,
-  missions: 20, templates: 18, docs: 12,
+  missions: 20, templates: 18, docs: 14,
 };
 console.log(`Files scanned: ${allFiles.length} | lessons: ${counts.lessons} | missions: ${counts.missions} | templates: ${counts.templates} | learner docs: ${counts.docs}`);
 if (failures === 0) {

@@ -2,6 +2,26 @@
 
 **One goal: build a checkable engineering record around one real problem.** You don't need to be able to merge a PR on day one, and you don't need to know ROCm or C++.
 
+## Your path through the course
+
+```text
+New learner
+    ↓
+15-minute Starter Lab — a guaranteed first success (Python only, no account)
+    ↓
+Lesson 01: Choose a real issue
+    ↓
+Git Quickstart — the local Git you need from Lesson 02 onward
+    ↓
+Lesson 02: Reproduce the bug
+    ↓
+Lessons 03–05: Root cause → minimal patch → prove the fix
+    ↓
+Lesson 06: Open a PR
+```
+
+The Starter Lab and the Git Quickstart are **onboarding modules** — the ten lessons keep their numbering. Already comfortable with terminals and local Git? Skip both and jump into any lesson; each one names its prerequisites.
+
 ## What you'll have after ten lessons
 
 You will have practiced, on a real issue of your choosing: find an issue → reproduce it → investigate the root cause → make a minimal fix → validate with tests → open a PR → handle review → judge CI → close out. Whether upstream merges it is the maintainers' decision — not controlled by you, this course, or any AI.
@@ -27,4 +47,4 @@ Every lesson follows the same rhythm: **what's the problem → why this solution
 
 Yes. Documentation, install scripts, and plain software bugs need no GPU. If you choose a GPU issue, read the [cloud GPU lab](cloud-gpu-lab.md) first. Cloud Linux results never automatically represent Windows, your local driver, or a different GPU architecture.
 
-**Now begin: [Lesson 01 — Find your issue](../../lessons/en/01-find-an-issue.md)**. [简体中文版](../zh-CN/start-here.md)
+**Now begin: new to open source? Start with the [15-minute Starter Lab](../../labs/first-fix/README.md) — fix a real bug, red to green. Otherwise go straight to [Lesson 01 — Find your issue](../../lessons/en/01-find-an-issue.md); before Lesson 02, read the [Git Quickstart](git-quickstart.md).** [简体中文版](../zh-CN/start-here.md)

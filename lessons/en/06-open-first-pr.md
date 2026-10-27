@@ -1,7 +1,7 @@
 # Lesson 06 — Your first pull request: fork, branch, commit, push
 
 > **This lesson solves exactly one problem: how do I submit my change for upstream review without breaking anything?**
-> Time: 45–75 minutes · Prerequisite: the patch and evidence from [Lesson 05](./05-prove-the-fix.md) · Deliverable: a real, openable PR URL
+> Time: 45–75 minutes · Prerequisite: the patch and evidence from [Lesson 05](./05-prove-the-fix.md), sitting on the working branch you created in the [Git Quickstart](../../docs/en/git-quickstart.md) · Deliverable: a real, openable PR URL
 
 ## A. The problem
 
@@ -22,6 +22,8 @@ Six words, in order — each defined here once:
 - **Push** — upload your branch from your computer to your fork on GitHub.
 - **Pull request (PR)** — the request for maintainers to review your branch and, if they accept it, merge it into the official code.
 
+Clone, branch, commit, and remotes were already practiced hands-on in the [Git Quickstart](../../docs/en/git-quickstart.md); this lesson adds only the fork and the PR itself, and recaps the rest in one place.
+
 In [PR #13437](https://github.com/ROCm/rocm-libraries/pull/13437), the head branch lived in the fork `AIwork4me/rocm-libraries` and the base was `ROCm/rocm-libraries`'s `develop` branch — exactly this pipeline, at full scale.
 
 ## D. Real-world evidence
@@ -32,7 +34,20 @@ Every repository has its own rules about which branch to target. The #13437 PR t
 
 **1. Read the target repository's contribution rules.** Note the required base branch, commit message style, and whether an issue must be linked first. If the repository provides a PR template, you will use it in Lesson 07.
 
-**2. Fork on GitHub, then clone your fork** and wire up the official repo as `upstream`:
+**2. Get your verified work onto GitHub.** Click **Fork** on the upstream repository (one click; it creates `<YOUR_USER>/<REPO>` under your account). Then pick the path that matches where your work lives:
+
+**Option A — continue in your working clone (recommended; this is the setup the [Git Quickstart](../../docs/en/git-quickstart.md) created before Lesson 02).** Your fix is already committed on a branch (e.g. `investigate/issue-3956`) inside a clone whose `origin` is the official repository. Add your fork as a second remote and push the branch there:
+
+```bash
+git status        # confirm: on YOUR branch, no surprises
+git remote -v     # origin = the official repo you cloned from
+git remote add fork https://github.com/<YOUR_USER>/<REPO>.git
+git push -u fork investigate/issue-<NUMBER>
+```
+
+Nothing is moved and nothing is redone — the branch you built through Lessons 02–05 becomes the PR branch exactly as it is.
+
+**Option B — start from a fresh clone of your fork** (the layout many `CONTRIBUTING.md` guides describe). Clone the fork, wire up the official repo as `upstream`, and branch from the correct base:
 
 ```bash
 git clone https://github.com/<YOUR_USER>/<REPO>.git
@@ -43,7 +58,9 @@ git fetch upstream
 git switch -c fix/<short-topic> upstream/<BASE_BRANCH>
 ```
 
-**3. Bring your verified fix into the branch.** Review before staging — stage only the files your patch plan covers:
+If your earlier work sits in a *different* clone, don't blind-copy uncommitted files between clones. A minimal patch is small by design — re-applying the final diff here is usually fastest and safest; to move commits properly, have your assistant explain `git format-patch` / `git am` before you use them.
+
+**3. Commit — or re-check the commits you already have.** In Option A your commits already exist from Lessons 04–05: review them (`git log --oneline -5`, `git diff <BASE>..<YOUR_BRANCH>`). In Option B, review before staging and add only the files your patch plan covers, then push:
 
 ```bash
 git status
