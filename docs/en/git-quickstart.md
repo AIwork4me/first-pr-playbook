@@ -74,6 +74,10 @@ git diff
 +my second note
 ```
 
+(This is an **excerpt of the key output**. The full output also contains lines like `diff --git`, `index`, `@@ -1 +1,2 @@` — Git telling you which lines of which file changed, not an error.)
+
+A note on `\ No newline at end of file`: it means the file did not end with a newline. Git treats that line as deleted and re-added, so the line counts reported by `git commit` can be larger than you expect — that is normal.
+
 `git diff` shows line-by-line what changed since the last commit. Reading this output — not trusting memory or an AI summary — is the habit Lessons 04 and 05 are built on. Once you have read it, record the change exactly as before:
 
 ```bash
@@ -95,7 +99,31 @@ git switch -                           # return to the branch you were on before
 
 `git switch -` (a single dash) takes you back to the branch you were on *before* the current one — in this sequence, the default branch your `git init` created, whether Git named it `main` or `master`. No name to look up, nothing to guess. The `git branch` line above still lists every branch and marks the current one with `*` — use it whenever you genuinely need a name. (Older Git: `git checkout -` does the same.)
 
-Open `notes.txt` after switching back: your "experimental line" is gone — not deleted, just stored safely on the other branch (this works because you *committed* it there first; uncommitted edits travel with you between branches). Switch again with `git switch experiment/new-note` and it reappears. **That is the mental model: a branch is a desk you can walk away from, and the file on disk always reflects the branch you are standing on.**
+Now check it yourself instead of taking the next paragraph on trust:
+
+```bash
+cat notes.txt        # on Windows PowerShell, type notes.txt works too
+```
+
+```text
+my first note
+my second note
+```
+
+Your "experimental line" is gone — not deleted, just stored safely on the other branch (this works because you *committed* it there first; uncommitted edits travel with you between branches). Switch back to the experiment branch to confirm:
+
+```bash
+git switch experiment/new-note
+cat notes.txt
+```
+
+```text
+my first note
+my second note
+experimental line
+```
+
+**That is the mental model: a branch is a desk you can walk away from, and the file on disk always reflects the branch you are standing on.**
 
 ### Cleaning up the sandbox (optional — and how to delete safely)
 

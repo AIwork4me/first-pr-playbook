@@ -74,6 +74,10 @@ git diff
 +my second note
 ```
 
+（上面是**关键输出节选**。实际输出还包含 `diff --git`、`index`、`@@ -1 +1,2 @@` 这几类行——那是 Git 在说明哪个文件的哪几行变了，不是报错。）
+
+顺带说明 `\ No newline at end of file`：它表示文件最后一行结尾没有换行符。Git 会把这一行当作「删掉再重建」，因此 `git commit` 报告的增删行数可能多于你的预期——这是正常的。
+
 `git diff` 逐行显示自上次提交以来改了什么。亲自读这个输出——而不是依赖记忆或 AI 的转述——正是第 04、05 课要建立的核心习惯。读完之后，用与之前完全相同的方式记录这个改动：
 
 ```bash
@@ -95,7 +99,31 @@ git switch -                           # 回到你之前所在的分支
 
 「git switch -」（一个短横线）会带你回到*当前分支之前*你所处的分支——在这个流程里，就是 `git init` 创建的那条默认分支，无论 Git 把它命名为 `main` 还是 `master`。不需要查名字，也不需要猜。上面的 `git branch` 仍会列出所有分支并用 `*` 标记当前分支——真正需要名字的时候用它。（较老的 Git 用 `git checkout -` 也能实现。）
 
-切回去之后再打开 `notes.txt`：你的 "experimental line" 不见了——不是被删除，而是被安全地存放在另一条分支上（能这样是因为你先在那条分支上*提交*了它；未提交的改动会跟着你一起换分支）。再执行 `git switch experiment/new-note` 切换过去，它又回来了。**这就是分支的心智模型：分支是一张你可以随时离开的办公桌，磁盘上的文件永远反映你当前所在的分支。**
+切回去之后，亲自核对文件内容——不要只读下面的文字：
+
+```bash
+cat notes.txt        # PowerShell 也可用 type notes.txt
+```
+
+```text
+my first note
+my second note
+```
+
+你的 "experimental line" 不见了——不是被删除，而是被安全地存放在另一条分支上（能这样是因为你先在那条分支上*提交*了它；未提交的改动会跟着你一起换分支）。再切回实验分支确认一次：
+
+```bash
+git switch experiment/new-note
+cat notes.txt
+```
+
+```text
+my first note
+my second note
+experimental line
+```
+
+**这就是分支的心智模型：分支是一张你可以随时离开的办公桌，磁盘上的文件永远反映你当前所在的分支。**
 
 ### 清理沙盒（可选——以及怎样安全地删除）
 
