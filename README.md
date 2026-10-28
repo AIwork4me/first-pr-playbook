@@ -1,5 +1,7 @@
 # First PR Playbook — From Your First Issue to Your First Open-Source Contribution
 
+![First PR Playbook — From Your First Issue to Your First Open-Source Contribution](assets/first-pr-playbook-hero.png)
+
 **English | [简体中文](README.zh-CN.md)**
 
 > A beginner-friendly, evidence-driven course for taking one real open-source issue all the way through reproduction, root-cause analysis, a minimal patch, validation, a pull request, code review, and CI.
