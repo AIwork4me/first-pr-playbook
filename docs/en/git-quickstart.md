@@ -74,9 +74,9 @@ git diff
 +my second note
 ```
 
-(This is an **excerpt of the key output**. The full output also contains lines like `diff --git`, `index`, `@@ -1 +1,2 @@` — Git telling you which lines of which file changed, not an error.)
+(This is only the **key line** — the real output is longer. You will also see lines like `diff --git`, `index`, `@@ -1 +1,2 @@`; they say which lines of which file changed. They are not errors, and you can ignore them.)
 
-A note on `\ No newline at end of file`: it means the file did not end with a newline. Git treats that line as deleted and re-added, so the line counts reported by `git commit` can be larger than you expect — that is normal.
+About the `\ No newline at end of file` hint: it means "the last line of this file has no newline at the end" — you never pressed Enter after the last line. Git then treats that line as deleted and written again, so the next `git commit` may report "2 insertions, 1 deletion" even though you only added one line. You did not do anything wrong.
 
 `git diff` shows line-by-line what changed since the last commit. Reading this output — not trusting memory or an AI summary — is the habit Lessons 04 and 05 are built on. Once you have read it, record the change exactly as before:
 
