@@ -1,4 +1,4 @@
-# 入门实验：15 分钟完成你的第一次 Bug 修复
+# 入门实验：完成你的第一次 Bug 修复（约 15 分钟）
 
 **[English version](README.md)**
 
@@ -12,7 +12,7 @@
 看到 PASS → 理解改了什么、为什么这样改
 ```
 
-**时间预期。** 在 Python 已装好的前提下，练习本身大多数学习者约 **15 分钟**完成。如果还没装 Python，请额外预留 10–20 分钟——那是一次性的环境准备，不算在练习时间内。超过 15 分钟完全正常：目标是理解，不是速度。
+**时间预期。** 在 Python 已装好的前提下，练习的**设计目标是 15 分钟左右完成**——这是一个努力方向，不是对你速度的承诺。如果还没装 Python，请额外预留 10–20 分钟——那是一次性的环境准备，不算在练习时间内。超过 15 分钟完全正常：目标是理解，不是速度。
 
 ## 步骤 1 — 准备：确认 Python 可用
 
@@ -30,17 +30,27 @@ python --version      # 部分系统（主要是 Windows）也有这个
 
 ## 步骤 2 — 运行那个失败的测试
 
-在终端里进入**你下载的本课程仓库文件夹**（即包含顶层 `README.md` 和 `labs/` 目录的那个文件夹），然后进入实验目录并运行测试：
+**先获取实验文件——不需要 Git，也不需要 GitHub 账号：**
+
+1. 在浏览器中打开本仓库的 GitHub 页面，点击绿色 **`<> Code`** 按钮，再点 **Download ZIP**。
+2. 在「下载」文件夹找到 `first-pr-playbook-main.zip`（解压前它通常在这里）并解压：Windows——右键 →「全部解压缩」；macOS——双击 ZIP 文件；Linux——运行 `unzip first-pr-playbook-main.zip`。
+3. 解压出来的文件夹名为 **`first-pr-playbook-main`**（GitHub 会自动加上分支名）。这个包含课程顶层 `README.md` 和 `labs/` 目录的文件夹，就是下文命令里说的「仓库文件夹」。（如果你已经用 Git 克隆过仓库，这些文件你已经有了。）
+
+现在打开终端，进入实验文件夹并运行测试：
 
 ```bash
-# Windows（PowerShell 或命令提示符）
-cd labs\first-fix
+# Windows（PowerShell）
+cd ~\Downloads\first-pr-playbook-main     # 若终端已经打开在解压后的文件夹里，
+cd labs\first-fix                        # 可跳过这一行
 py run_tests.py
 
 # macOS / Linux
-cd labs/first-fix
+cd ~/Downloads/first-pr-playbook-main    # 若终端已经打开在解压后的文件夹里，
+cd labs/first-fix                        # 可跳过这一行
 python3 run_tests.py
 ```
+
+Windows 小技巧：在文件资源管理器中，按住 **Shift** 右键点击解压出的 `first-pr-playbook-main` 文件夹，选择「在此处打开 PowerShell 窗口」（Windows 10）或「在终端中打开」（Windows 11）——然后直接从 `cd labs\first-fix` 开始。
 
 **按下回车之前——先预测。** 实验文件 `buggy.py` 里有 `normalize_title("  fix  typo   in docs  ")`。你觉得它会返回什么字符串？先把你的猜想写下来，再运行。
 
