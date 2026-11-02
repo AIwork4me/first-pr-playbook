@@ -37,8 +37,9 @@ Initialized empty Git repository in .../git-practice/.git/
 
 ```bash
 # 2. Create a file: use ANY text editor (Notepad, VS Code, TextEdit, gedit)
-#    to save a file named notes.txt in the git-practice folder, containing:
-#    "my first note"
+#    to save a file named notes.txt in the git-practice folder, containing
+#    this single line (the quotes only mark the content; do not type them):
+#    my first note
 git status
 ```
 
@@ -66,7 +67,7 @@ git commit -m "add first note"
 
 ```bash
 # 4. Make a change and inspect it BEFORE recording it
-#    (edit notes.txt in your editor: append a second line "my second note")
+#    (edit notes.txt in your editor: append a second line, also without quotes: my second note)
 git diff
 ```
 
@@ -88,7 +89,7 @@ git commit -m "add second note"
 ```bash
 # 5. Now try branches — the point of this whole page
 git switch -c experiment/new-note      # create and move to a new branch
-# (edit notes.txt again: append "experimental line")
+# (edit notes.txt again: append this line, also without quotes: experimental line)
 git add notes.txt                      # record the change on THIS branch
 git commit -m "add experimental line"
 git status                             # shows: On branch experiment/new-note
@@ -134,6 +135,7 @@ cd ~                    # go to your home folder
 pwd                     # double-check where you are: prints your home path
 ls -A git-practice      # INSPECT: must show only notes.txt and .git
                         # (-A includes hidden entries like .git)
+                        # On Windows use: dir git-practice -Force
 rm -r git-practice      # only now delete (macOS / Linux)
 ```
 

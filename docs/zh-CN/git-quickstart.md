@@ -37,8 +37,9 @@ Initialized empty Git repository in .../git-practice/.git/
 
 ```bash
 # 2. 创建文件：用任意文本编辑器（记事本、VS Code、TextEdit、gedit）
-#    在 git-practice 文件夹里保存一个 notes.txt，内容为：
-#    "my first note"
+#    在 git-practice 文件夹里保存一个 notes.txt，内容为下面这一行
+#    （引号只用来标出内容范围，不要把引号输进去）：
+#    my first note
 git status
 ```
 
@@ -66,7 +67,7 @@ git commit -m "add first note"
 
 ```bash
 # 4. 做一处改动，并在记录之前先查看它
-#    （用编辑器打开 notes.txt，追加第二行 "my second note"）
+#    （用编辑器打开 notes.txt，追加第二行，同样不要输入引号：my second note）
 git diff
 ```
 
@@ -88,7 +89,7 @@ git commit -m "add second note"
 ```bash
 # 5. 试试分支——本页的重点
 git switch -c experiment/new-note      # 创建并切换到新分支
-# （再次编辑 notes.txt：追加一行 "experimental line"）
+# （再次编辑 notes.txt：追加一行，同样不要输入引号：experimental line）
 git add notes.txt                      # 把改动记录在"这条"分支上
 git commit -m "add experimental line"
 git status                             # 显示：On branch experiment/new-note
@@ -134,6 +135,7 @@ cd ~                    # 回到用户主目录
 pwd                     # 再次确认位置：应打印主目录路径
 ls -A git-practice      # 查看：必须只有 notes.txt 和 .git
                         #（-A 会列出 .git 这样的隐藏条目）
+                        # Windows 用：dir git-practice -Force
 rm -r git-practice      # 确认无误后才删除（macOS / Linux）
 ```
 
