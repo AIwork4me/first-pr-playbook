@@ -128,26 +128,31 @@ experimental line
 
 ### 清理沙盒（可选——以及怎样安全地删除）
 
-你**不是必须删除**什么：沙盒只是一个小文件夹，留着不占什么空间。但真实的开源工作迟早会遇到删除命令，所以现在就把安全模式学会——**先查看，再删除，而且只删除你刚刚列出并确认过的文件夹**：
+你**不是必须删除**什么：沙盒只是一个小文件夹，留着不占什么空间。但真实的开源工作迟早会遇到删除命令，所以现在就把安全模式学会——**先查看，再删除，而且只删除你刚刚列出并确认过的文件夹**。
+
+**这一步的命令在 Windows 与 macOS / Linux 上并不相同**，所以请先按自己的系统挑**下面两组中的一组**，再照着执行：
+
+**Windows（PowerShell）**
+
+```powershell
+cd ~
+pwd
+dir git-practice -Force          # 查看：必须只有 notes.txt 和 .git
+                                 #（-Force 会列出 .git 这样的隐藏条目）
+Remove-Item -Recurse -Force git-practice    # 确认无误后才删除
+```
+
+**macOS / Linux**
 
 ```bash
 cd ~                    # 回到用户主目录
 pwd                     # 再次确认位置：应打印主目录路径
 ls -A git-practice      # 查看：必须只有 notes.txt 和 .git
                         #（-A 会列出 .git 这样的隐藏条目）
-                        # Windows 用：dir git-practice -Force
-rm -r git-practice      # 确认无误后才删除（macOS / Linux）
+rm -r git-practice      # 确认无误后才删除
 ```
 
-PowerShell 等价写法，同样遵守先查看再删除：
-
-```powershell
-cd ~
-pwd
-dir git-practice -Force   # 查看：必须只有 notes.txt 和 .git
-                          #（-Force 会列出 .git 这样的隐藏条目）
-Remove-Item -Recurse -Force git-practice
-```
+两组命令遵守的是同一条规则：**先查看，再删除**。
 
 - 如果查看步骤显示出**任何你不认识的东西**——多出来的文件、别的文件夹——**立即停止**。那个文件夹不是本沙盒，删除它从来不是这个练习的一部分。
 - 想要更直观的确认？直接在文件管理器（资源管理器 / Finder）里删除该文件夹——你能亲眼看到什么消失了。
@@ -232,7 +237,7 @@ git status        # 随时确认：你还在"自己的"分支上
 | 文件夹路径 | `cd labs\first-fix`（反斜杠；PowerShell 也接受 `/`） | `cd labs/first-fix` |
 | 用户主目录 | `cd ~` | `cd ~` |
 | 默认编辑器 | 系统自带记事本 | TextEdit（macOS）/ gedit 或任意编辑器 |
-| 删除沙盒 | 可选——按上方**「清理沙盒」**一节的先查看再删除步骤执行；切勿粘贴没有读过的删除命令 | 所有平台完全相同 |
+| 删除沙盒 | 可选——`dir git-practice -Force` 查看，确认无误后再 `Remove-Item -Recurse -Force git-practice` | 可选——`ls -A git-practice` 查看，确认无误后再 `rm -r git-practice` |
 
 本课程从不假设 Bash 语法在 PowerShell 里也能用——凡命令有平台差异，课程都会同时给出两种写法。
 
