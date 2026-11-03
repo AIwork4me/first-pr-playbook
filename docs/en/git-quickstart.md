@@ -37,8 +37,9 @@ Initialized empty Git repository in .../git-practice/.git/
 
 ```bash
 # 2. Create a file: use ANY text editor (Notepad, VS Code, TextEdit, gedit)
-#    to save a file named notes.txt in the git-practice folder, containing:
-#    "my first note"
+#    to save a file named notes.txt in the git-practice folder, containing
+#    this single line (the quotes only mark the content; do not type them):
+#    my first note
 git status
 ```
 
@@ -66,7 +67,7 @@ git commit -m "add first note"
 
 ```bash
 # 4. Make a change and inspect it BEFORE recording it
-#    (edit notes.txt in your editor: append a second line "my second note")
+#    (edit notes.txt in your editor: append a second line, also without quotes: my second note)
 git diff
 ```
 
@@ -88,7 +89,7 @@ git commit -m "add second note"
 ```bash
 # 5. Now try branches — the point of this whole page
 git switch -c experiment/new-note      # create and move to a new branch
-# (edit notes.txt again: append "experimental line")
+# (edit notes.txt again: append this line, also without quotes: experimental line)
 git add notes.txt                      # record the change on THIS branch
 git commit -m "add experimental line"
 git status                             # shows: On branch experiment/new-note
@@ -127,25 +128,31 @@ experimental line
 
 ### Cleaning up the sandbox (optional — and how to delete safely)
 
-You never *have* to delete anything: the sandbox is one tiny folder, and keeping it costs nothing. Real open-source work will ask you to run delete commands eventually, so this is the safe pattern to learn now — **inspect first, delete second, and only ever name a folder you just listed**:
+You never *have* to delete anything: the sandbox is one tiny folder, and keeping it costs nothing. Real open-source work will ask you to run delete commands eventually, so this is the safe pattern to learn now — **inspect first, delete second, and only ever name a folder you just listed**.
+
+**The delete commands differ between Windows and macOS / Linux**, so pick **one of the two groups below** — the one matching your system — before you run anything:
+
+**Windows (PowerShell)**
+
+```powershell
+cd ~
+pwd
+dir git-practice -Force               # INSPECT: must show only notes.txt and .git
+                                      # (-Force includes hidden entries like .git)
+Remove-Item -Recurse -Force git-practice   # only now delete
+```
+
+**macOS / Linux**
 
 ```bash
 cd ~                    # go to your home folder
 pwd                     # double-check where you are: prints your home path
 ls -A git-practice      # INSPECT: must show only notes.txt and .git
                         # (-A includes hidden entries like .git)
-rm -r git-practice      # only now delete (macOS / Linux)
+rm -r git-practice      # only now delete
 ```
 
-PowerShell equivalent, same inspect-first rule:
-
-```powershell
-cd ~
-pwd
-dir git-practice -Force   # INSPECT: must show only notes.txt and .git
-                          # (-Force includes hidden entries like .git)
-Remove-Item -Recurse -Force git-practice
-```
+Both groups follow the same rule: **inspect first, delete second**.
 
 - If the inspect step shows **anything you don't recognize** — extra files, other folders — **stop**. That folder is not this sandbox, and deleting it was never part of the exercise.
 - Prefer visual certainty? Delete the folder in File Explorer / Finder — you see exactly what disappears.
@@ -230,7 +237,7 @@ Everything you did on this page lives on your machine. The public project cannot
 | Folder paths | `cd labs\first-fix` (backslash; PowerShell also accepts `/`) | `cd labs/first-fix` |
 | Home folder | `cd ~` | `cd ~` |
 | Default editor | Notepad preinstalled | TextEdit (macOS) / gedit or any editor |
-| Deleting the sandbox | Optional — follow the inspect-first steps in **Cleaning up the sandbox** above; never paste a delete command you haven't read | Identical on all platforms |
+| Deleting the sandbox | Optional — inspect with `dir git-practice -Force`, then `Remove-Item -Recurse -Force git-practice` | Optional — inspect with `ls -A git-practice`, then `rm -r git-practice` |
 
 This course never assumes Bash-only syntax works in PowerShell — wherever a command differs between systems, the lessons show both.
 
