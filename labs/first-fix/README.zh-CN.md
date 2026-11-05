@@ -161,11 +161,11 @@ OK
 |---|---|
 | `python`/`py`/`python3` 不是内部或外部命令 / command not found | 未安装 Python 或未加入 PATH。到 [python.org](https://www.python.org/downloads/) 重装；Windows 安装时勾选 **Add python.exe to PATH**；重开终端。Windows 优先用 `py` 启动器。 |
 | 到底用 `python`、`python3` 还是 `py`？ | Windows：先试 `py`，再试 `python`。macOS/Linux：用 `python3`。步骤 1 中哪条命令能打印版本号，就用哪个。 |
-| `can't open file 'run_tests.py'` 或 `No such file or directory` | 工作目录不对。Windows 用 `cd`（macOS/Linux 用 `pwd`）查看当前位置，然后 `cd` 进入下载仓库里的 `labs/first-fix` 目录。 |
+| `can't open file 'run_tests.py'` 或 `No such file or directory` | 工作目录不对。用 `pwd`（PowerShell 中也可写 `Get-Location`）查看当前位置，然后 `cd` 进入下载仓库里的 `labs/first-fix` 目录。注意：单独执行 `cd` 能打印路径是 cmd.exe 的行为，PowerShell 不会打印。 |
 | `ModuleNotFoundError: No module named 'buggy'`（找不到模块 `buggy`） | 你在实验目录之外运行了测试。两个文件必须在同一目录——先 `cd labs\first-fix`（Windows）或 `cd labs/first-fix`（macOS/Linux）再运行。 |
 | `Ran 0 tests` / 测试似乎没被发现 | 你可能在用 `python -m unittest discover` 之类的发现模式。不要用——直接运行文件：`py run_tests.py` / `python3 run_tests.py`。（测试文件叫 `run_tests.py` 正是为了避免仓库里其他批量测试自动发现它。） |
 | 编辑 `buggy.py` 后提示语法错误 | 有拼写错误（少了引号、括号或冒号）。错误信息会标出行号；对照原来的 `return title.strip()` 那一行检查。 |
-| 第一次运行就全部 `ok`（基线意外变绿） | `buggy.py` 已经被修好了——可能是你或 AI 助手此前改过。恢复初始状态：在仓库根目录运行 `git checkout -- labs/first-fix/buggy.py`（或重新下载仓库），然后从步骤 2 重新开始。 |
+| 第一次运行就全部 `ok`（基线意外变绿） | `buggy.py` 已经被修好了——可能是你或 AI 助手此前改过。恢复初始状态：若用 `git clone` 获取仓库，在仓库根目录运行 `git checkout -- labs/first-fix/buggy.py`；若按步骤 2 用 **Code → Download ZIP** 下载（解压后没有 `.git`），则重新下载并解压一份干净的仓库。然后从步骤 2 重新开始。 |
 | 修复后运行测试仍然失败 | 读新的 `AssertionError`——它精确告诉你实际输出与期望的差别。确认文件已保存、改的是 `buggy.py` 本体（不是副本）、没有改过 `run_tests.py`。 |
 
 ## 给维护者：这个实验如何保证 CI 安全
